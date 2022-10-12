@@ -1,0 +1,23 @@
+function fScore(stock) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  // Make the current sheet(tab) as FScore
+  var sheet = ss.getSheetByName("FScore");
+  var lastRow = sheet.getLastRow();
+  // Define the cell range.  Col 1 Row 1 to Col 1 Last Row
+  var dataRange = sheet.getRange(1,1,lastRow,1);
+  // Grab the data from the col and put them in the array
+  var data = dataRange.getValues();
+  var row = 0;
+  var len = data.length;
+  var fScore = "";
+
+
+  // Loop through each row and find match
+  for (row; row < len; row++) {     
+    if (data[row] == stock) {
+      cell = sheet.getRange(row+1,2);
+      fScore = cell.getValue();
+    }
+  }
+  return fScore;
+}
